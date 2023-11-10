@@ -13,9 +13,9 @@ metadata:
     - Flask
   attributes:
     alpha.dockerimage-port: 5000
-parent:
-  id: python-test
-  registryUrl: 'https://registry.hub.docker.com/v2'
+#parent:
+#  id: python
+#  registryUrl: 'https://registry.hub.docker.com/v2'
 components:
   - name: image-build
     image:

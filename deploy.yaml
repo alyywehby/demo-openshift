@@ -1,5 +1,5 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: my-python
 spec:
@@ -12,6 +12,8 @@ spec:
       labels:
         app: python-app
     spec:
+      imagePullSecrets:
+        - name: cgcnets-dockerhub
       containers:
         - name: my-python
           image: python-image:latest
@@ -23,16 +25,17 @@ spec:
             requests:
               memory: "50Mi"
               cpu: "10m"
+
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: my-python
 spec:
-ports:
+  ports:
   - name: http-5000
     port: 5000
     protocol: TCP
     targetPort: 5000
-selector:
-  app: python-app
+  selector:
+    app: python-app

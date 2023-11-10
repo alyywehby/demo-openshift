@@ -22,9 +22,9 @@ components:
   - name: flask-app
     container:
       image: your-image-name:latest  # Replace with your Docker image name
-    mounts:
-      - name: app-code
-        containerPath: /projects/flask-app
+#    mounts:
+#      - name: app-code
+#        containerPath: /projects/flask-app
 commands:
   - id: run-app
     apply:

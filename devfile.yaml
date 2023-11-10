@@ -1,0 +1,29 @@
+metadata:
+  name: flask-devfile
+  description: Devfile for Flask application
+
+projects:
+  - name: flask-app
+    source:
+      location: .
+
+commands:
+  - name: run-app
+    exec:
+      command: python
+      args: ["app.py"]
+    dev: true
+
+components:
+  - name: python
+    container:
+      image: python:3.8-slim
+    mounts:
+      - name: app-code
+        containerPath: /projects/flask-app
+        volume:
+          ephemeral:
+            sizeLimit: 512Mi
+
+volumes:
+  - name: app-code

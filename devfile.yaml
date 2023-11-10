@@ -14,7 +14,7 @@ metadata:
   attributes:
     alpha.dockerimage-port: 5000
 parent:
-  id: python
+  id: python-test
   registryUrl: 'https://registry.hub.docker.com/v2'
 components:
   - name: image-build

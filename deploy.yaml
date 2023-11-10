@@ -1,46 +1,38 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
-  name: flask-app
+  name: my-python
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flask-app
+      app: python-app
   template:
     metadata:
       labels:
-        app: flask-app
+        app: python-app
     spec:
       containers:
-      - name: flask-container
-        image: your-image-name  # Replace with your Docker image name
-        ports:
-        - containerPort: 5000
-
+        - name: my-python
+          image: python-image:latest
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "10m"
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: flask-service
+  name: my-python
 spec:
-  selector:
-    app: flask-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-
----
-apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  name: flask-route
-spec:
-  to:
-    kind: Service
-    name: flask-service
-    weight: 100
-  port:
+ports:
+  - name: http-5000
+    port: 5000
+    protocol: TCP
     targetPort: 5000
-  wildcardPolicy: None
+selector:
+  app: python-app

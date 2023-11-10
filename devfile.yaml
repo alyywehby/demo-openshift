@@ -15,11 +15,11 @@ metadata:
     alpha.dockerimage-port: 5000
 parent:
   id: python
-  registryUrl: 'https://registry.devfile.io'
+  registryUrl: 'https://hub.docker.com/'
 components:
   - name: image-build
     image:
-      imageName: python-image:latest
+      imageName: cgcnets/gcm:SINOFI-DEMO-OPENSHIFT
       dockerfile:
         uri: Dockerfile
         buildContext: .

@@ -1,30 +1,45 @@
 schemaVersion: 2.2.0
 metadata:
   name: flask-devfile
-  description: Devfile for Flask application
-
-projects:
-  - name: flask-app
-    source:
-      location: .
-
-commands:
-  - name: run-app
-    exec:
-      command: python
-      args: ["app.py"]
-    dev: true
-
+  projectType: Python
+  displayName: Flask
+  icon: <URL_TO_FLASK_ICON>
+  description: 'A simple Flask server with CRUD operations.'
+  language: Python
+  version: 1.0.0
+  provider: OpenAI
+  tags:
+    - Flask
+    - REST API
+    - CRUD
+  supportUrl: https://github.com/your-repo/flask-app#support-information
+  attributes:
+    alpha.dockerimage-port: 5000
+parent:
+  id: python
+  registryUrl: 'https://registry.devfile.io'
 components:
-  - name: python
+  - name: flask-app
     container:
-      image: python:3.8-slim
+      image: your-image-name:latest  # Replace with your Docker image name
     mounts:
       - name: app-code
         containerPath: /projects/flask-app
         volume:
           ephemeral:
             sizeLimit: 512Mi
-
-volumes:
-  - name: app-code
+commands:
+  - id: run-app
+    apply:
+      component: flask-app
+  - id: build-image
+    apply:
+      component: flask-app
+  - id: deploy
+    composite:
+      commands:
+        - build-image
+        - run-app
+      group:
+        kind: deploy
+        isDefault: true

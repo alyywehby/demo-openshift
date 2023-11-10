@@ -25,9 +25,6 @@ components:
     mounts:
       - name: app-code
         containerPath: /projects/flask-app
-        volume:
-          ephemeral:
-            sizeLimit: 512Mi
 commands:
   - id: run-app
     apply:

@@ -3,7 +3,6 @@ metadata:
   name: FlaskServer-Openshift
   projectType: Python
   displayName: Python
-  icon: https://raw.githubusercontent.com/devfile-samples/devfile-stack-icons/main/python.svg
   description:
     'Demo flask server to demostrate the needed step to deploy a python application into redhat openshift'
   language: Python
